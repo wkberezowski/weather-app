@@ -8,6 +8,7 @@ window.addEventListener('load', () => {
   const locationTimezone = document.querySelector('.location-timezone');
   let icon = document.querySelector('.location img');
   let degreeSection = document.querySelector('.degree-section');
+  let degreeSectionSpan = document.querySelector('.degree-section span');
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -26,7 +27,6 @@ window.addEventListener('load', () => {
           const { description } = data.weather[0];
           const { country } = data.sys;
           const { name } = data;
-          const iconCode = data.weather[0].icon;
 
           // set DOM elements from API
           temperatureDegree.textContent = Math.floor(temp);
@@ -34,7 +34,20 @@ window.addEventListener('load', () => {
           locationTimezone.textContent = `${name} / ${country}`;
 
           // update icon
+          const iconCode = data.weather[0].icon;
           icon.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+          // converting to farenheit
+          let farenheit = Math.floor(temp) * (9 / 5) + 32;
+          degreeSection.addEventListener('click', () => {
+            if (degreeSectionSpan.textContent === 'C') {
+              temperatureDegree.textContent = Math.floor(farenheit);
+              degreeSectionSpan.textContent = 'F';
+            } else {
+              degreeSectionSpan.textContent = 'C';
+              temperatureDegree.textContent = Math.floor(temp);
+            }
+          });
         });
     });
   } else {
