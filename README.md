@@ -1,6 +1,6 @@
 # This is a minimalistic weather app.
 
-## The app displays current location with *getCurrentPosition* method and fetches weather data from [openweatherapp.org](https://openweathermap.org/current) API and changes the icon accordingly.
+## The app displays current location with *getCurrentPosition* method, fetches weather data from [openweatherapp.org](https://openweathermap.org/current) API and changes the icon accordingly.
 
 ### The user can also switch between celsius and fahrenheit.
 
